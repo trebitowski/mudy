@@ -9,19 +9,26 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^4.24.1",
+    "@prisma/client": "^5.3.1",
+    "langchain": "^0.0.154",
+    "lucide-react": "^0.279.0",
+    "next": "latest",
     "react": "latest",
+    "react-autosave": "^0.4.2",
     "react-dom": "latest",
-    "next": "latest"
+    "zod": "^3.22.2"
   },
   "devDependencies": {
-    "typescript": "latest",
-    "@types/react": "latest",
     "@types/node": "latest",
+    "@types/react": "latest",
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
-    "postcss": "latest",
-    "tailwindcss": "latest",
     "eslint": "latest",
-    "eslint-config-next": "latest"
+    "eslint-config-next": "latest",
+    "postcss": "latest",
+    "prisma": "^5.3.1",
+    "tailwindcss": "latest",
+    "typescript": "latest"
   }
 }
