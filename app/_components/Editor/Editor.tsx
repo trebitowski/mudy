@@ -4,9 +4,13 @@ import { updateEntry } from '@/utils/api'
 import { CheckIcon, Loader2Icon } from 'lucide-react'
 import React from 'react'
 import { useAutosave } from 'react-autosave'
+import type { JournalEntry, Analysis } from '@prisma/client';
 
-function Editor({ entry }) {
-  const [content, setContent] = React.useState(entry.content)
+type PropTypes = {
+  entry: (JournalEntry & { analysis: Analysis | null }) | null
+}
+
+function Editor({ entry }: PropTypes) {
   const [loading, setLoading] = React.useState(false)
   const [analysis, setAnalysis] = React.useState(entry.analysis)
 

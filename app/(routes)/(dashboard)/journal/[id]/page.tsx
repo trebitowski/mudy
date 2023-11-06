@@ -2,7 +2,13 @@ import Editor from '@/app/_components/Editor'
 import { getCurrentUser } from '@/utils/auth'
 import { prisma } from '@/utils/db'
 
-async function getEntry(entryId) {
+type PropTypes = {
+  params: {
+    id: string
+  }
+}
+
+async function getEntry(entryId: string) {
   const user = await getCurrentUser()
 
   const entry = await prisma.journalEntry.findUnique({
@@ -20,7 +26,7 @@ async function getEntry(entryId) {
   return entry
 }
 
-export default async function EntryPage({ params }) {
+export default async function EntryPage({ params }: PropTypes) {
   const entry = await getEntry(params.id)
 
   return <Editor entry={entry} />

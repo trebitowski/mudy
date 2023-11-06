@@ -1,4 +1,4 @@
-function createURL(path) {
+function createURL(path: string) {
   return window.location.origin + path
 }
 
@@ -15,7 +15,7 @@ export async function createNewEntry() {
   }
 }
 
-export async function updateEntry(id, content) {
+export async function updateEntry(id: string, content: string) {
   const res = await fetch(
     new Request(createURL(`/api/journal/${id}`), {
       method: 'PATCH',
@@ -29,7 +29,7 @@ export async function updateEntry(id, content) {
   }
 }
 
-export async function askQuestion(question) {
+export async function askQuestion(question: string) {
   const res = await fetch(
     new Request(createURL(`/api/question`), {
       method: 'POST',

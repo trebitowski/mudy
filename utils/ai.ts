@@ -6,6 +6,7 @@ import { Document } from 'langchain/document'
 import { loadQARefineChain } from 'langchain/chains'
 import { OpenAIEmbeddings } from 'langchain/embeddings/openai'
 import { MemoryVectorStore } from 'langchain/vectorstores/memory'
+import { JournalEntry } from '@prisma/client'
 
 const parser = StructuredOutputParser.fromZodSchema(
   z.object({
@@ -27,7 +28,7 @@ const parser = StructuredOutputParser.fromZodSchema(
   })
 )
 
-async function getPrompt(content) {
+async function getPrompt(content: string) {
   const formattedInstructions = parser.getFormatInstructions()
 
   const prompt = new PromptTemplate({
@@ -44,7 +45,7 @@ async function getPrompt(content) {
   return input
 }
 
-export async function analyze(content) {
+export async function analyze(content: string) {
   const model = new OpenAI({ temperature: 0, modelName: 'gpt-3.5-turbo' })
   const prompt = await getPrompt(content)
   const result = await model.call(prompt)
@@ -56,7 +57,7 @@ export async function analyze(content) {
   }
 }
 
-export async function qa(question, entries) {
+export async function qa(question: string, entries: JournalEntry[]) {
   const docs = entries.map(
     (entry) =>
       new Document({
