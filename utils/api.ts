@@ -29,6 +29,19 @@ export async function updateEntry(id: string, content: string) {
   }
 }
 
+export async function analyzeEntry(id: string) {
+  const res = await fetch(
+    new Request(createURL(`/api/journal/${id}/analyze`), {
+      method: 'POST'
+    })
+  )
+
+  if (res.ok) {
+    const data = await res.json()
+    return data.data
+  }
+}
+
 export async function askQuestion(question: string) {
   const res = await fetch(
     new Request(createURL(`/api/question`), {

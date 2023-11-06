@@ -13,7 +13,7 @@ const parser = StructuredOutputParser.fromZodSchema(
     mood: z
       .string()
       .describe('the emotion of the person who wrote the journal entry.'),
-    subject: z.string().describe('the subject of the journal entry.'),
+    subject: z.string().describe('the title of the journal entry.'),
     summary: z.string().describe('a quick summary of the entire entry.'),
     negative: z
       .boolean()
@@ -23,7 +23,7 @@ const parser = StructuredOutputParser.fromZodSchema(
     color: z
       .string()
       .describe(
-        'a hsl color code that represents the mood of the journal entry. Example hsl(220, 50%, 75%) for blue representing sadness. The hue should represent the mood and ranges from 0 to 360. saturation should be less than 60% depending on the mood. lightness is always 75%.'
+        'a hsl color code that represents the journal entry. Example hsl(220, 50%, 75%) for blue representing sadness. The hue should represent the mood and ranges from 0 to 360. saturation should be less than 60% depending on the mood. lightness is always 75%.'
       ),
   })
 )

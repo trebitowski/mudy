@@ -4,6 +4,12 @@ import { prisma } from '@/utils/db'
 import { revalidatePath } from 'next/cache'
 import { NextResponse } from 'next/server'
 
+const options = {
+  weekday: 'long',
+  month: 'short',
+  day: 'numeric',
+} as const;
+
 export async function POST() {
   const user = await getCurrentUser()
 
@@ -14,15 +20,21 @@ export async function POST() {
     },
   })
 
-  const analysis = await analyze(entry.content)
+  const event = new Date();
+
   await prisma.analysis.create({
     data: {
       entryId: entry.id,
-      ...analysis,
+      mood: "",
+      color: "#e7e5e4",
+      summary: "",
+      subject: event.toLocaleDateString('en-US', options),
+      negative: false
     },
   })
 
   revalidatePath('/journal')
+  revalidatePath(`/trend`)
 
   return NextResponse.json({ data: entry })
 }
